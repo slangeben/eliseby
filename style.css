@@ -10,10 +10,6 @@ canvas {
            ✦ fonts ✦
 ✧༺♥༻✧  ╚══ஓ๑♡๑ஓ══╝ ✧༺♥༻✧*/
 
-@font-face {
-  font-family: 'ocrFont';
-  src: url('ocrFont.ttf') format('truetype');
-}
 
 /*✧༺♥༻✧╔══ஓ๑♡๑ஓ══╗ ✧༺♥༻✧
            ✦ menu ✦
@@ -28,7 +24,9 @@ canvas {
 
 .menu-item {
   position: absolute;
-  font-family: 'ocrFont', monospace;
+  font-family: "ocr-a-std", monospace;
+  font-weight: 400;
+  font-style: normal;
   font-size: 20px;
   color: black;
   text-decoration: none;
