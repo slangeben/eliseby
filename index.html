@@ -4,25 +4,154 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>eliseby</title>
+    <title>✧˚̩̥̩̥˚·̩̩̥͙✧ eliseby ✧˚̩̥̩̥˚·̩̩̥͙✧</title>
 
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="https://use.typekit.net/wyq7xmj.css">
+    
 
  <script src="libraries/p5.min.js"></script>
     <script src="libraries/p5.sound.min.js"></script>
+    <script>
+      
+  
+/*  ♪♫❤✩✧✿ ♡ ⋆｡❀ ࿔ CUTE CLICKSPLOTION CURSOR EFFECT * ☆ ★ ✮ ✧・❥ ⊹ */
+/*                  ✧༺♥༻✧╔══ஓ๑♡๑ஓ══╗ ✧༺♥༻✧
+                    ✦ © MARIA LANDE LUND 2025 ✦
+                  ✧༺♥༻✧  ╚══ஓ๑♡๑ஓ══╝ ✧༺♥༻✧ */
+
+const setClickColour = 'black'; // change to any css color
+
+// BELOW THIS LINE DO NOT EDIT //
+
+(function() {
+  const symbols = ["♪","♫","✩","✧","✿","♡","⋆","｡","❀","࿔","*","☆","★","✮","✧","・","❥"];
+
+  function createSymbol(x, y, spread = 100) { // increase # for more space
+    const symbol = document.createElement("div");
+    symbol.classList.add("clicksplosion-symbol");
+    symbol.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    symbol.style.position = 'absolute';
+    symbol.style.pointerEvents = 'none';
+    symbol.style.userSelect = 'none';
+    symbol.style.fontSize = '15px';
+    symbol.style.color = setClickColour;
+
+    const offsetX = (Math.random() - 0.5) * spread * 2;
+    const offsetY = (Math.random() - 0.5) * spread * 2;
+    symbol.style.left = x + offsetX + "px";
+    symbol.style.top = y + offsetY + "px";
+
+    document.body.appendChild(symbol);
+    setTimeout(() => symbol.remove(), 300 + Math.random() * 700);
+  }
+
+  function initClicksplosion() {
+    let isDrawing = false;
+
+    document.addEventListener("mousedown", e => {
+      isDrawing = true;
+      for (let i = 0; i < 10; i++) {
+        createSymbol(e.clientX, e.clientY, 120); // spread size
+      }
+    });
+
+    document.addEventListener("mouseup", () => {
+      isDrawing = false;
+    });
+
+    document.addEventListener("mousemove", e => {
+      if (isDrawing) {
+        createSymbol(e.clientX, e.clientY, 200);
+      }
+    });
+  }
+
+  // call clicksplotion
+  initClicksplosion();
+})();
+
+/*  ♪♫❤✩✧✿ ♡ ⋆｡❀ ࿔ END OF CURSOR EFFECT * ☆ ★ ✮ ✧・❥ ⊹ */
+</script>
+
+
   </head>
 
   <body>
-    
+ <!-- ✧༺♥༻✧╔══ஓ๑♡๑ஓ══╗ ✧༺♥༻✧
+            ✦ menu items ✦
+    ✧༺♥༻✧  ╚══ஓ๑♡๑ஓ══╝ ✧༺♥༻✧ -->
+
     <script src="sketch.js"></script>
     <div id="menu">
+
+      <!-- ♪♫• press •♫♪ */ -->
     <a href="#press" class="menu-item" style="top: 60%; left: 20%;">press</a>
+
+     <!--/* ♪♫• contact •♫♪ */-->
     <a href="#contact" class="menu-item" style="top: 47%; right: 15%;">contact</a>
+
+     <!-- /* ♪♫• listen •♫♪ */-->
     <a href="#listen" class="menu-item" style="top: 20%; left: 50%;">listen</a>
+
+     <!-- /* ♪♫• bio •♫♪ */-->
     <a href="#bio" class="menu-item" style="top: 20%; left: 20%;">bio</a>
-    <a href="#hub" class="menu-item" style="top: 80%; left: 70%;">hub</a>
+
+     <!--/* ♪♫• calendar •♫♪ */ -->
+    <a href="#calendar" class="menu-item" style="top: 80%; right: 30%;">calendar</a>
+    
   </div>
+
+
+
   
+<!--✧༺♥༻✧╔══ஓ๑♡๑ஓ══╗ ✧༺♥༻✧
+    ✦ bio pop up dialog ✦
+✧༺♥༻✧  ╚══ஓ๑♡๑ஓ══╝ ✧༺♥༻✧-->
+  
+<dialog id="myDialog">
+  <p>╰┈☆ bio ☆┈╯</p>
+  <p> eliseby is 21 and from oslo. she studies music production and songwriting at uia, 
+    and creates experimental pop that explores sound, texture, and atmosphere.</p>
+  <form method="dialog">
+    <button>OK</button>
+  </form>
+</dialog>
+
+
+<script>
+const dialog = document.getElementById('myDialog');
+const bioLink = document.querySelector('#menu a[href="#bio"]');
+
+let isDragging = false;
+let offsetX, offsetY;
+
+// visibility ♪♫•*¨*•.¸¸❤¸¸.•*¨*•♫♪
+bioLink.addEventListener('click', (e) => {
+  e.preventDefault();
+  dialog.show();
+  dialog.style.top = '100px';
+  dialog.style.left = '100px';
+});
+
+// dragging logic ♪♫•*¨*•.¸¸❤¸¸.•*¨*•♫♪
+dialog.addEventListener('mousedown', (e) => {
+  const rect = dialog.getBoundingClientRect();
+  isDragging = true;
+  offsetX = e.clientX - rect.left;
+  offsetY = e.clientY - rect.top;
+});
+
+document.addEventListener('mousemove', (e) => {
+  if (!isDragging) return;
+  dialog.style.left = `${e.clientX - offsetX}px`;
+  dialog.style.top = `${e.clientY - offsetY}px`;
+});
+
+document.addEventListener('mouseup', () => {
+  isDragging = false;
+});
+</script>
+
   </body>
 </html>

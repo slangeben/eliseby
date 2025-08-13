@@ -6,9 +6,6 @@ html, body {
 canvas {
   display: block;
 }
-/*✧༺♥༻✧╔══ஓ๑♡๑ஓ══╗ ✧༺♥༻✧
-           ✦ fonts ✦
-✧༺♥༻✧  ╚══ஓ๑♡๑ஓ══╝ ✧༺♥༻✧*/
 
 
 /*✧༺♥༻✧╔══ஓ๑♡๑ஓ══╗ ✧༺♥༻✧
@@ -36,4 +33,52 @@ canvas {
 .menu-item:hover {
   text-decoration: underline;
   cursor: pointer;
+}
+dialog {
+  font-family: "Helvetica World", sans-serif;
+  color: blue;
+  z-index: 300;
+  background: white;
+  border: 1px solid;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 256px;
+  margin: 0;
+  padding: 0.5rem;
+  position: absolute;
+  inset: auto;
+}
+
+dialog form {
+  font-family: "Helvetica World", sans-serif;
+  border-bottom: 1px solid #fff;
+  display: flex;
+}
+
+dialog button {
+  font-family: "Helvetica World", sans-serif;
+  font: inherit;
+  text-transform: uppercase;
+  color: inherit;
+  background: none;
+  border: none;
+  margin: 0 0 0 auto;
+  padding: 12px 16px;
+  font-size: 10px;
+  line-height: 12px;
+}
+
+/*✧༺♥༻✧╔══ஓ๑♡๑ஓ══╗ ✧༺♥༻✧
+         ✦ selection ✦
+✧༺♥༻✧  ╚══ஓ๑♡๑ஓ══╝ ✧༺♥༻✧*/
+::selection {
+  background: #F2C2CF;
+  color: black;
+  text-shadow: none;
+}
+
+::-moz-selection {
+  background: #F2C2CF;
+  color: black;
+  text-shadow: none;
 }

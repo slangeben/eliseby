@@ -3,7 +3,7 @@
 ╚══ஓ๑♡๑ஓ══╝ ✧༺♥༻✧*/
 //let ocrfont;      
 let logo;         
-let baselayer;   
+let baseLayer;   
 
 /*.   ╔══ஓ๑♡๑ஓ══╗
   ✦ preload assets ✦
@@ -21,14 +21,14 @@ function setup() {
   noSmooth(); // keeps pixelation crisp
 
   // create the base layer
-  baselayer = createGraphics(windowWidth, windowHeight);
-  baselayer.background(255);
+  baseLayer = createGraphics(windowWidth, windowHeight);
+  baseLayer.background(255);
 
   // draw logo (adjust size here)
-  let logow = width * 0.55;  // custom width
-  let logoh = height * 0.6; // custom height
-  baselayer.imageMode(CENTER);
-  baselayer.image(logo, width / 2, height / 2, logow, logoh);
+  let logoW = width * 0.55;  // custom width
+  let logoH = height * 0.6; // custom height
+  baseLayer.imageMode(CENTER);
+  baseLayer.image(logo, width / 2, height / 2, logoW, logoH);
 
   // ⋆ static graphics here ⋆
 
@@ -39,17 +39,17 @@ function setup() {
         ✦ pixelation ✦
 ✧༺♥༻✧  ╚══ஓ๑♡๑ஓ══╝ ✧༺♥༻✧*/
 function draw() {
-  image(baselayer, 0, 0);
+  image(baseLayer, 0, 0);
 
   let regionsize = 180; // pixelated area size
-  let pixelsize = 10;   // pixel block size
+  let pixelsize = 14;   // pixel block size
 
   // pos, following mouse
   let x = constrain(mouseX - regionsize / 2, 0, width - regionsize);
   let y = constrain(mouseY - regionsize / 2, 0, height - regionsize);
 
   
-  let lens = baselayer.get(x, y, regionsize, regionsize);
+  let lens = baseLayer.get(x, y, regionsize, regionsize);
 
   // shrink, then large
   image(lens, x, y, pixelsize, pixelsize);
