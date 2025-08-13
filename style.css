@@ -34,6 +34,9 @@ canvas {
   text-decoration: underline;
   cursor: pointer;
 }
+/*✧༺♥༻✧╔══ஓ๑♡๑ஓ══╗ ✧༺♥༻✧
+           ✦ dialog ✦
+✧༺♥༻✧  ╚══ஓ๑♡๑ஓ══╝ ✧༺♥༻✧*/
 dialog {
   font-family: "Helvetica World", sans-serif;
   color: blue;
@@ -44,7 +47,7 @@ dialog {
   width: 100%;
   max-width: 256px;
   margin: 0;
-  padding: 0.5rem;
+  padding: 1.2rem;
   position: absolute;
   inset: auto;
 }
