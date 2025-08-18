@@ -97,7 +97,7 @@ const setClickColour = 'blue'; // change to any css color
     <a href="#bio" class="menu-item" style="top: 20%; left: 20%;">bio</a>
 
      <!--/* ♪♫• calendar •♫♪ */ -->
-    <a href="https://stereo-preview.tumblr.com/" class="menu-item" style="top: 80%; right: 30%;">blog</a>
+    <a href="https://glazedtheme.tumblr.com/" class="menu-item" style="top: 80%; right: 30%;">blog</a>
     
   </div>
 
@@ -129,11 +129,22 @@ const setClickColour = 'blue'; // change to any css color
   <form method="dialog"><button>close</button></form>
 </dialog>
 
+
 <dialog id="popup-listen">
   <p>╰┈☆ listen ☆┈╯</p>
-  <p>Links to music platforms...</p>
+  <iframe 
+    style="border-radius: 24px" 
+    src="https://untitled.stream/embed/qMYRaOr6noUM" 
+    width="100%" 
+    height="344" 
+    allowFullScreen 
+    allow="picture-in-picture" 
+    frameborder="0" 
+    loading="lazy">
+  </iframe>
   <form method="dialog"><button>close</button></form>
 </dialog>
+
 
 <dialog id="popup-calendar">
   <p>╰┈☆ calendar ☆┈╯</p>
@@ -145,25 +156,36 @@ const setClickColour = 'blue'; // change to any css color
 
 
 <script>
-  
 document.querySelectorAll('#menu a').forEach(link => {
   const target = link.getAttribute('href').substring(1); // e.g. "bio"
   const dialog = document.getElementById(`popup-${target}`);
 
   if (!dialog) return;
 
-  // visibility ♪♫•*¨*•.¸¸❤¸¸.•*¨*•♫♪
+  // click to show dialog
   link.addEventListener('click', (e) => {
     e.preventDefault();
+
     dialog.show();
-    dialog.style.top = '100px';
-    dialog.style.left = '100px';
+
+    if (window.innerWidth < 768) { // mobile
+      dialog.style.position = 'fixed';
+      dialog.style.top = '50%';
+      dialog.style.left = '50%';
+      dialog.style.transform = 'translate(-50%, -50%)';
+    } else { // desktop
+      dialog.style.position = 'absolute';
+      dialog.style.top = e.clientY + 'px';
+      dialog.style.left = e.clientX + 'px';
+      dialog.style.transform = 'none';
+    }
   });
 
-  // dragging logic ♪♫•*¨*•.¸¸❤¸¸.•*¨*•♫♪
+  // dragging logic for desktop only
   let isDragging = false, offsetX, offsetY;
 
   dialog.addEventListener('mousedown', (e) => {
+    if (window.innerWidth < 768) return; // disable drag on mobile
     const rect = dialog.getBoundingClientRect();
     isDragging = true;
     offsetX = e.clientX - rect.left;
@@ -181,6 +203,7 @@ document.querySelectorAll('#menu a').forEach(link => {
   });
 });
 </script>
+
 
   </body>
 </html>

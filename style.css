@@ -3,9 +3,18 @@ html, body {
   padding: 0;
 }
 
-canvas {
+canvas { /* pin it to the viewport */
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: -1;
   display: block;
+  color: #fff;
 }
+
+
+
 
 
 /*✧༺♥༻✧╔══ஓ๑♡๑ஓ══╗ ✧༺♥༻✧
@@ -50,6 +59,7 @@ dialog {
   padding: 1.2rem;
   position: absolute;
   inset: auto;
+  cursor:grab;
 }
 
 dialog form {
