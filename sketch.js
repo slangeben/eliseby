@@ -1,7 +1,6 @@
 /*╔══ஓ๑♡๑ஓ══╗ ✧༺♥༻✧
   ✦ global variables ✦
 ╚══ஓ๑♡๑ஓ══╝ ✧༺♥༻✧*/
-//let ocrfont;      
 let logo;         
 let baseLayer;   
 
@@ -9,7 +8,6 @@ let baseLayer;
   ✦ preload assets ✦
       ╚══ஓ๑♡๑ஓ══╝ */
 function preload() {
-  //ocrfont = loadFont('ocrfont.ttf');             // load font
   logo = loadImage('elisebyPixelLogo.png');       // load logo
 }
 
@@ -24,15 +22,21 @@ function setup() {
   baseLayer = createGraphics(windowWidth, windowHeight);
   baseLayer.background(255);
 
-  // draw logo (adjust size here)
-  let logoW = width * 0.55;  // custom width
-  let logoH = height * 0.6; // custom height
+  // ⋆ draw logo with locked ratio ⋆
+  let maxLogoW = width * 0.55;   // max allowed width
+  let maxLogoH = height * 0.6;   // max allowed height
+  let logoRatio = logo.width / logo.height;
+
+  let logoW = maxLogoW;
+  let logoH = logoW / logoRatio;
+
+  if (logoH > maxLogoH) {
+    logoH = maxLogoH;
+    logoW = logoH * logoRatio;
+  }
+
   baseLayer.imageMode(CENTER);
   baseLayer.image(logo, width / 2, height / 2, logoW, logoH);
-
-  // ⋆ static graphics here ⋆
-
-
 }
 
 /*✧༺♥༻✧╔══ஓ๑♡๑ஓ══╗ ✧༺♥༻✧
@@ -48,14 +52,10 @@ function draw() {
   let x = constrain(mouseX - regionsize / 2, 0, width - regionsize);
   let y = constrain(mouseY - regionsize / 2, 0, height - regionsize);
 
-  
   let lens = baseLayer.get(x, y, regionsize, regionsize);
 
-  // shrink, then large
+  // shrink, then enlarge
   image(lens, x, y, pixelsize, pixelsize);
   let tiny = get(x, y, pixelsize, pixelsize);
   image(tiny, x, y, regionsize, regionsize);
-
-
- 
 }
