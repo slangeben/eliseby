@@ -97,7 +97,7 @@ const setClickColour = 'blue'; // change to any css color
     <a href="#bio" class="menu-item" style="top: 20%; left: 20%;">bio</a>
 
      <!--/* ♪♫• calendar •♫♪ */ -->
-    <a href="#calendar" class="menu-item" style="top: 80%; right: 30%;">calendar</a>
+    <a href="https://stereo-preview.tumblr.com/" class="menu-item" style="top: 80%; right: 30%;">blog</a>
     
   </div>
 
@@ -106,49 +106,79 @@ const setClickColour = 'blue'; // change to any css color
   
 <!--✧༺♥༻✧╔══ஓ๑♡๑ஓ══╗ ✧༺♥༻✧
     ✦ bio pop up dialog ✦
-✧༺♥༻✧  ╚══ஓ๑♡๑ஓ══╝ ✧༺♥༻✧-->
+  ✧༺♥༻✧  ╚══ஓ๑♡๑ஓ══╝ ✧༺♥༻✧-->
   
-<dialog id="myDialog">
+<!-- ✧ popups ✧ -->
+<dialog id="popup-bio">
   <p>╰┈☆ bio ☆┈╯</p>
-  <p> eliseby is the current artist project by 21 year old elise bygjordet from oslo. she studies music production and songwriting at uia, 
-    and creates experimental pop that explores sound, texture, and atmosphere</p>
-  <form method="dialog">
-    <button>close</button>
-  </form>
+  <p>eliseby is the current artist project by 21 year old elise bygjordet from oslo. she studies music production and songwriting at uia, and creates experimental pop that explores sound, texture, and atmosphere
+
+</p>
+  <form method="dialog"><button>close</button></form>
+</dialog>
+
+<dialog id="popup-press">
+  <p>╰┈☆ press ☆┈╯</p>
+  <p>Here goes press info...</p>
+  <form method="dialog"><button>close</button></form>
+</dialog>
+
+<dialog id="popup-contact">
+  <p>╰┈☆ contact ☆┈╯</p>
+  <p>Email: hello@example.com</p>
+  <form method="dialog"><button>close</button></form>
+</dialog>
+
+<dialog id="popup-listen">
+  <p>╰┈☆ listen ☆┈╯</p>
+  <p>Links to music platforms...</p>
+  <form method="dialog"><button>close</button></form>
+</dialog>
+
+<dialog id="popup-calendar">
+  <p>╰┈☆ calendar ☆┈╯</p>
+  <p>Upcoming events here...</p>
+  <form method="dialog"><button>close</button></form>
 </dialog>
 
 
+
+
 <script>
-const dialog = document.getElementById('myDialog');
-const bioLink = document.querySelector('#menu a[href="#bio"]');
+  
+document.querySelectorAll('#menu a').forEach(link => {
+  const target = link.getAttribute('href').substring(1); // e.g. "bio"
+  const dialog = document.getElementById(`popup-${target}`);
 
-let isDragging = false;
-let offsetX, offsetY;
+  if (!dialog) return;
 
-// visibility ♪♫•*¨*•.¸¸❤¸¸.•*¨*•♫♪
-bioLink.addEventListener('click', (e) => {
-  e.preventDefault();
-  dialog.show();
-  dialog.style.top = '100px';
-  dialog.style.left = '100px';
-});
+  // visibility ♪♫•*¨*•.¸¸❤¸¸.•*¨*•♫♪
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    dialog.show();
+    dialog.style.top = '100px';
+    dialog.style.left = '100px';
+  });
 
-// dragging logic ♪♫•*¨*•.¸¸❤¸¸.•*¨*•♫♪
-dialog.addEventListener('mousedown', (e) => {
-  const rect = dialog.getBoundingClientRect();
-  isDragging = true;
-  offsetX = e.clientX - rect.left;
-  offsetY = e.clientY - rect.top;
-});
+  // dragging logic ♪♫•*¨*•.¸¸❤¸¸.•*¨*•♫♪
+  let isDragging = false, offsetX, offsetY;
 
-document.addEventListener('mousemove', (e) => {
-  if (!isDragging) return;
-  dialog.style.left = `${e.clientX - offsetX}px`;
-  dialog.style.top = `${e.clientY - offsetY}px`;
-});
+  dialog.addEventListener('mousedown', (e) => {
+    const rect = dialog.getBoundingClientRect();
+    isDragging = true;
+    offsetX = e.clientX - rect.left;
+    offsetY = e.clientY - rect.top;
+  });
 
-document.addEventListener('mouseup', () => {
-  isDragging = false;
+  document.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    dialog.style.left = `${e.clientX - offsetX}px`;
+    dialog.style.top = `${e.clientY - offsetY}px`;
+  });
+
+  document.addEventListener('mouseup', () => {
+    isDragging = false;
+  });
 });
 </script>
 
