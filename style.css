@@ -101,6 +101,7 @@ dialog button {
 footer {
   color: blue;
   text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 13px;
   padding: 8px 0;
   letter-spacing: 0.5px;
@@ -109,7 +110,6 @@ footer {
   left: 0;
   width: 100%;
   border-top: 2px dashed #fff; /* retro-girly touch */
-  text-shadow: 0 0 6px #d08bff; /* subtle glowing vibe */
 }
 footer p {
   margin: 0;
