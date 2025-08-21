@@ -8,7 +8,6 @@
 
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="https://use.typekit.net/wyq7xmj.css">
-    
 
  <script src="libraries/p5.min.js"></script>
     <script src="libraries/p5.sound.min.js"></script>
@@ -119,13 +118,13 @@ const setClickColour = 'blue'; // change to any css color
 
 <dialog id="popup-press">
   <p>╰┈☆ press ☆┈╯</p>
-  <p>Here goes press info...</p>
+  <p> press info...</p>
   <form method="dialog"><button>close</button></form>
 </dialog>
 
 <dialog id="popup-contact">
   <p>╰┈☆ contact ☆┈╯</p>
-  <p>Email: hello@example.com</p>
+  <p>email: hello@example.com</p>
   <form method="dialog"><button>close</button></form>
 </dialog>
 
@@ -146,11 +145,7 @@ const setClickColour = 'blue'; // change to any css color
 </dialog>
 
 
-<dialog id="popup-calendar">
-  <p>╰┈☆ calendar ☆┈╯</p>
-  <p>Upcoming events here...</p>
-  <form method="dialog"><button>close</button></form>
-</dialog>
+
 
 
 
@@ -174,11 +169,16 @@ document.querySelectorAll('#menu a').forEach(link => {
       dialog.style.left = '50%';
       dialog.style.transform = 'translate(-50%, -50%)';
     } else { // desktop
-      dialog.style.position = 'absolute';
-      dialog.style.top = e.clientY + 'px';
-      dialog.style.left = e.clientX + 'px';
-      dialog.style.transform = 'none';
-    }
+  dialog.style.position = 'absolute';
+
+  // add offset for "contact"
+  let offsetY = target === "contact" ? 50 : 0; 
+  dialog.style.top = (e.clientY - offsetY) + 'px';
+
+  dialog.style.left = e.clientX + 'px';
+  dialog.style.transform = 'none';
+}
+
   });
 
   // dragging logic for desktop only
@@ -204,6 +204,6 @@ document.querySelectorAll('#menu a').forEach(link => {
 });
 </script>
 
-
+<footer> designed and developed with ♡ by maria lande lund </footer>
   </body>
 </html>

@@ -3,7 +3,7 @@ html, body {
   padding: 0;
 }
 
-canvas { /* pin it to the viewport */
+canvas {
   top: 0;
   left: 0;
   width: 100% !important;
@@ -11,7 +11,9 @@ canvas { /* pin it to the viewport */
   z-index: -1;
   display: block;
   color: #fff;
+  position: fixed;
 }
+
 
 
 
@@ -94,4 +96,34 @@ dialog button {
   background: #F2C2CF;
   color: black;
   text-shadow: none;
+}
+
+footer {
+  color: blue;
+  text-align: center;
+  font-size: 13px;
+  padding: 8px 0;
+  letter-spacing: 0.5px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-top: 2px dashed #fff; /* retro-girly touch */
+  text-shadow: 0 0 6px #d08bff; /* subtle glowing vibe */
+}
+footer p {
+  margin: 0;
+}
+/* default (desktop) */
+.contact-link {
+  top: 47%;
+  right: 15%;
+  position: absolute; /* make sure it's positioned */
+}
+
+/* override on mobile */
+@media (max-width: 768px) {
+  .contact-link {
+    top: 40%; /* move it higher on small screens */
+  }
 }

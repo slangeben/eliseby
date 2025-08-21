@@ -8,7 +8,7 @@ let baseLayer;
   ✦ preload assets ✦
       ╚══ஓ๑♡๑ஓ══╝ */
 function preload() {
-  logo = loadImage('elisebyPixelLogo.png');       // load logo
+  logo = loadImage('elisebyPixelLogo.png'); 
 }
 
 /*✧༺♥༻✧ ╔══ஓ๑♡๑ஓ══╗ ✧༺♥༻✧
