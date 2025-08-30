@@ -8,9 +8,11 @@
 
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="https://use.typekit.net/wyq7xmj.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/keen-slider@latest/keen-slider.min.css">
 
  <script src="libraries/p5.min.js"></script>
     <script src="libraries/p5.sound.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/keen-slider@latest/keen-slider.min.js"></script>
     <script>
       
   
@@ -116,15 +118,27 @@ const setClickColour = 'blue'; // change to any css color
   <form method="dialog"><button>close</button></form>
 </dialog>
 
-<dialog id="popup-press">
-  <p>╰┈☆ press ☆┈╯</p>
-  <p> press info...</p>
-  <form method="dialog"><button>close</button></form>
-</dialog>
+<section id="press-gallery" style="display: none;">
+  <div id="press-slider" class="keen-slider">
+    <div class="keen-slider__slide number-slide1">1</div>
+    <div class="keen-slider__slide number-slide2">2</div>
+    <div class="keen-slider__slide number-slide3">3</div>
+    <div class="keen-slider__slide number-slide4">4</div>
+    <div class="keen-slider__slide number-slide5">5</div>
+    <div class="keen-slider__slide number-slide6">6</div>
+  </div>
+  <div id="click-text" style="text-align:center; margin-top: 20px;">
+    <a href="/password.html" target="_blank" rel="REDIRECTION" class="click-press-link">
+      CLICK if you’re press!
+    </a>
+  </div>
+</section>
 
 <dialog id="popup-contact">
   <p>╰┈☆ contact ☆┈╯</p>
-  <p>email: hello@example.com</p>
+  <p>
+    <a href="mailto:eliseby.music@gmail.com">eliseby.music@gmail.com</a>
+  </p>
   <form method="dialog"><button>close</button></form>
 </dialog>
 
@@ -145,9 +159,54 @@ const setClickColour = 'blue'; // change to any css color
 </dialog>
 
 
+<!--✧༺♥༻✧╔══ஓ๑♡๑ஓ══╗ ✧༺♥༻✧
+  ✦ keen slider press section ✦
+  ✧༺♥༻✧  ╚══ஓ๑♡๑ஓ══╝ ✧༺♥༻✧-->
+
+<script src="https://cdn.jsdelivr.net/npm/keen-slider@latest/keen-slider.min.js"></script>
+<script>
+const pressGallery = document.getElementById('press-gallery');
+const pressLink = document.querySelector('#menu a[href="#press"]');
+let pressSlider;
+
+// gallery on click
+pressLink.addEventListener('click', (e) => {
+  e.preventDefault();
+  pressGallery.style.display = 'block';
+
+ 
+  if (!pressSlider) {
+    pressSlider = new KeenSlider("#press-slider", {
+      loop: true,
+      mode: "free",
+      slides: { origin: "center", perView: 2.5, spacing: 10 },
+      drag: true,
+      rubberband: true,
+      vertical: false
+    });
+
+    //  trackpad scrolling
+    const sliderEl = document.getElementById("press-slider");
+    sliderEl.addEventListener("wheel", (e) => {
+      e.preventDefault();
+      const sensitivity = 0.5; // adjust scroll speed
+      pressSlider.scrollBy(e.deltaY * sensitivity);
+    }, { passive: false });
+  }
+
+  pressGallery.scrollIntoView({ behavior: "smooth" });
+});
+
+// disable gallery
+document.addEventListener('click', (e) => {
+  if (!pressGallery.contains(e.target) && e.target !== pressLink) {
+    pressGallery.style.display = 'none';
+  }
+});
+</script>
 
 
-
+<!--  ♪♫❤✩✧✿ ♡ ⋆｡❀ ࿔ END OF KEEN SLIDER * ☆ ★ ✮ ✧・❥ ⊹ */-->
 
 
 <script>
@@ -169,23 +228,18 @@ document.querySelectorAll('#menu a').forEach(link => {
       dialog.style.left = '50%';
       dialog.style.transform = 'translate(-50%, -50%)';
     } else { // desktop
-  dialog.style.position = 'absolute';
-
-  // add offset for "contact"
-  let offsetY = target === "contact" ? 50 : 0; 
-  dialog.style.top = (e.clientY - offsetY) + 'px';
-
-  dialog.style.left = e.clientX + 'px';
-  dialog.style.transform = 'none';
-}
-
+      dialog.style.position = 'absolute';
+      dialog.style.top = e.clientY + 'px';
+      dialog.style.left = e.clientX + 'px';
+      dialog.style.transform = 'none';
+    }
   });
 
-  // dragging logic for desktop only
+  // dragging logic (desktop only)
   let isDragging = false, offsetX, offsetY;
 
   dialog.addEventListener('mousedown', (e) => {
-    if (window.innerWidth < 768) return; // disable drag on mobile
+    if (window.innerWidth < 768) return; // disable drag mobile
     const rect = dialog.getBoundingClientRect();
     isDragging = true;
     offsetX = e.clientX - rect.left;
@@ -204,6 +258,11 @@ document.querySelectorAll('#menu a').forEach(link => {
 });
 </script>
 
-<footer> designed and developed with ♡ by maria lande lund </footer>
+<footer>
+  made with ♡ by 
+  <a href="https://portfolio.marialandelund.com" target="_blank" rel="developer and design credits">
+    maria lande lund
+  </a>
+</footer>
   </body>
 </html>

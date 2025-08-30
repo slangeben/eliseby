@@ -38,7 +38,8 @@ canvas {
   font-size: 20px;
   color: black;
   text-decoration: none;
-  pointer-events: auto; /* clickable */
+  pointer-events: auto;
+  overflow: hidden;
 }
 
 .menu-item:hover {
@@ -62,6 +63,7 @@ dialog {
   position: absolute;
   inset: auto;
   cursor:grab;
+  transform: translateX(-50%);
 }
 
 dialog form {
@@ -83,6 +85,11 @@ dialog button {
   line-height: 12px;
 }
 
+
+#popup-contact a:hover {
+  text-decoration: underline;
+}
+
 /*✧༺♥༻✧╔══ஓ๑♡๑ஓ══╗ ✧༺♥༻✧
          ✦ selection ✦
 ✧༺♥༻✧  ╚══ஓ๑♡๑ஓ══╝ ✧༺♥༻✧*/
@@ -101,29 +108,77 @@ dialog button {
 footer {
   color: blue;
   text-align: center;
+  font-size: 12px;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 13px;
   padding: 8px 0;
   letter-spacing: 0.5px;
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  border-top: 2px dashed #fff; /* retro-girly touch */
+  border-top: 2px dashed #fff;
 }
 footer p {
   margin: 0;
+} 
+footer a {
+  color: blue;
 }
-/* default (desktop) */
-.contact-link {
-  top: 47%;
-  right: 15%;
-  position: absolute; /* make sure it's positioned */
+@media (max-width: 768px) {
+  footer {
+    font-size: 10px; 
+    padding: 10px 0;     
+  }
 }
 
-/* override on mobile */
-@media (max-width: 768px) {
-  .contact-link {
-    top: 40%; /* move it higher on small screens */
-  }
+/*✧༺♥༻✧╔══ஓ๑♡๑ஓ══╗ ✧༺♥༻✧
+    ✦ press gallery slider ✦
+✧༺♥༻✧  ╚══ஓ๑♡๑ஓ══╝ ✧༺♥༻✧*/
+
+#press-gallery {
+  width: 100vw;
+  height: 65vh;
+  overflow: visible;
+  padding: 20px 0;
+}
+
+.keen-slider__slide {
+  background: blue;
+   width: auto;
+  height: 100%;
+  max-height: 65vh;
+  height: 100%;
+  aspect-ratio: 2 / 3;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: white;
+  z-index: 400;
+
+}
+
+#press-slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  cursor: grab;
+}
+
+#press-slider:active {
+  cursor: grabbing;
+}
+
+#click-text {
+font-size: 25px;
+color: blue;
+}
+
+#click-text a {
+  color: blue;
+}
+#click-text:hover {
+  font-style: italic;
 }
