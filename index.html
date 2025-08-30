@@ -13,6 +13,7 @@
  <script src="libraries/p5.min.js"></script>
     <script src="libraries/p5.sound.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/keen-slider@latest/keen-slider.min.js"></script>
+    
     <script>
       
   
@@ -86,7 +87,7 @@ const setClickColour = 'blue'; // change to any css color
     <div id="menu">
 
       <!-- ♪♫• press •♫♪ */ -->
-    <a href="#press" class="menu-item" style="top: 60%; left: 20%;">press</a>
+    <a href="#press" class="menu-item" style="top: 60%; left: 20%;">photos</a>
 
      <!--/* ♪♫• contact •♫♪ */-->
     <a href="#contact" class="menu-item" style="top: 47%; right: 15%;">contact</a>
@@ -119,17 +120,22 @@ const setClickColour = 'blue'; // change to any css color
 </dialog>
 
 <section id="press-gallery" style="display: none;">
-  <div id="press-slider" class="keen-slider">
-    <div class="keen-slider__slide number-slide1">1</div>
-    <div class="keen-slider__slide number-slide2">2</div>
-    <div class="keen-slider__slide number-slide3">3</div>
-    <div class="keen-slider__slide number-slide4">4</div>
-    <div class="keen-slider__slide number-slide5">5</div>
-    <div class="keen-slider__slide number-slide6">6</div>
-  </div>
-  <div id="click-text" style="text-align:center; margin-top: 20px;">
-    <a href="password.html" target="_blank" rel="REDIRECTION" class="click-press-link">
-      CLICK if you’re press!
+ <div id="press-slider" class="keen-slider">
+  <!-- <div class="keen-slider__slide number-slide1" style="min-width: 150px; max-width: 450px"> <img src="images/studioPic.png" alt=""></div> -->
+  <div class="keen-slider__slide number-slide2" style="min-width: 150px; max-width: 1000px"> <img src="images/img2.png" alt=""></div>
+  <div class="keen-slider__slide number-slide3" style="min-width: 150px; max-width: 500px;"><img src="images/img3.png" alt=""></div>
+  <div class="keen-slider__slide number-slide4" style="min-width: 400px; max-width: 500px;"><img src="images/img4.png" alt=""></div>
+  <div class="keen-slider__slide number-slide5" style="min-width: 300px; max-width: 500px;"><img src="images/img5.png" alt=""></div>
+  <div class="keen-slider__slide number-slide6" style="min-width: 200px; max-width: 500px;"><img src="images/img6.png" alt=""></div>
+  <div class="keen-slider__slide number-slide7" style="min-width: 200px; max-width: 500px;"><img src="images/img7.png" alt=""></div>
+  <div class="keen-slider__slide number-slide8" style="min-width: 200px; max-width: 500px;"><img src="images/studioPic.png" alt=""></div>
+  <div class="keen-slider__slide number-slide9" style="min-width: 200px; max-width: 500px;"><img src="images/img9.png" alt=""></div>
+
+</div>
+
+    <div id="click-text">
+    <a href="/password.html" target="_blank" class="click-press-link">
+     <u> CLICK if you’re press!</u>
     </a>
   </div>
 </section>
@@ -176,22 +182,13 @@ pressLink.addEventListener('click', (e) => {
 
  
   if (!pressSlider) {
-    pressSlider = new KeenSlider("#press-slider", {
-      loop: true,
-      mode: "free",
-      slides: { origin: "center", perView: 2.5, spacing: 10 },
-      drag: true,
-      rubberband: true,
-      vertical: false
-    });
+pressSlider = new KeenSlider("#press-slider", {
+  loop: false,
+  mode: "snap",
+  slides: { perView: "auto" },
+});
 
-    //  trackpad scrolling
-    const sliderEl = document.getElementById("press-slider");
-    sliderEl.addEventListener("wheel", (e) => {
-      e.preventDefault();
-      const sensitivity = 0.5; // adjust scroll speed
-      pressSlider.scrollBy(e.deltaY * sensitivity);
-    }, { passive: false });
+
   }
 
   pressGallery.scrollIntoView({ behavior: "smooth" });
@@ -266,3 +263,4 @@ document.querySelectorAll('#menu a').forEach(link => {
 </footer>
   </body>
 </html>
+
