@@ -136,6 +136,49 @@ footer a {
   }
 }
 
+@media (max-width: 768px) {
+  #menu a[href="#contact"] {
+    position: absolute !important;
+    top: 30% !important;
+    right: 15% !important;
+
+  }
+}
+
+@media (max-width: 768px) {
+  #menu a[href="#bio"] {
+    position: absolute !important;
+    top: 25% !important;
+    left: 20% !important;
+  }
+}
+@media (max-width: 768px) {
+  #menu a[href="#listen"] {
+    position: absolute !important;
+    top: 15% !important;
+    left: 50% !important;
+  }
+}
+@media (max-width: 768px) {
+  #menu a[href="#press"] {
+    position: absolute !important;
+    top: 65% !important;
+    left: 20% !important;
+  }
+}
+@media (max-width: 768px) {
+  #click-text a {
+  font-size: 25px;
+}
+}
+
+@media (max-width: 768px) {
+  #click-text {
+  top: 75%;
+  white-space: nowrap;
+}
+}
+
 /*✧༺♥༻✧╔══ஓ๑♡๑ஓ══╗ ✧༺♥༻✧
     ✦ press gallery slider ✦
 ✧༺♥༻✧  ╚══ஓ๑♡๑ஓ══╝ ✧༺♥༻✧*/
