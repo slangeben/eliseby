@@ -138,7 +138,7 @@ footer a {
 
 @media (max-width: 768px) {
   #menu a[href="#contact"] {
-    position: absolute !important;
+    position: fixed !important;
     top: 30% !important;
     right: 15% !important;
 
@@ -147,21 +147,21 @@ footer a {
 
 @media (max-width: 768px) {
   #menu a[href="#bio"] {
-    position: absolute !important;
+    position: fixed !important;
     top: 25% !important;
     left: 20% !important;
   }
 }
 @media (max-width: 768px) {
   #menu a[href="#listen"] {
-    position: absolute !important;
-    top: 15% !important;
-    left: 50% !important;
+    position: fixed !important;
+    top: 10% !important;
+    left: 40% !important;
   }
 }
 @media (max-width: 768px) {
   #menu a[href="#press"] {
-    position: absolute !important;
+    position: fixed !important;
     top: 65% !important;
     left: 20% !important;
   }
