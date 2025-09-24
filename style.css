@@ -1,6 +1,7 @@
 html, body {
   margin: 0;
   padding: 0;
+  
 }
 
 canvas {
@@ -13,7 +14,6 @@ canvas {
   color: #fff;
   position: fixed;
 }
-
 
 
 
@@ -36,7 +36,7 @@ canvas {
   font-weight: 400;
   font-style: normal;
   font-size: 20px;
-  color: black;
+  color: blue;
   text-decoration: none;
   pointer-events: auto;
   overflow: hidden;
@@ -211,18 +211,18 @@ footer a {
 
 
 .keen-slider__slide {
-  flex: 0 0 auto;
-  height: 100%;
-  max-width: 40vw;
+  flex: 0 0 auto;                 /* don’t let slides grow */
+  height: 100%;                   /* match gallery height */
+  max-width: 40vw;                /* << cap slide width */
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 1vw;
+  margin-right: 1vw;              /* consistent spacing */
 }
 
 .keen-slider__slide img {   
-  height: 100%;
-  width: auto;
+  height: 100%;                   /* fill vertical space */
+  width: auto;                    /* scale proportionally */
   object-fit: contain;
   pointer-events: none;
 }
@@ -250,3 +250,19 @@ footer a {
   font-style: italic;
 }
 
+
+
+#grid-overlay {
+  position: fixed;
+  z-index: 0;         
+  pointer-events: none;
+  mix-blend-mode: multiply; 
+  transform-origin: center;
+
+  width: 95%;
+  height: 95%;
+ 
+  top: 47%;
+  left: 50%;
+  translate: -50% -50%;
+}
