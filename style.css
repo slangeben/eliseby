@@ -45,6 +45,7 @@ canvas {
 .menu-item:hover {
   text-decoration: underline;
   cursor: pointer;
+  color: #ea0a8c;
 }
 /*✧༺♥༻✧╔══ஓ๑♡๑ஓ══╗ ✧༺♥༻✧
            ✦ dialog ✦
@@ -160,17 +161,19 @@ footer a {
 }
 @media (max-width: 768px) {
   #menu a[href="#press"] {
-    top: 75% !important;
+    top: 72% !important;
     left: 20% !important;
   }
 }
 
 @media (max-width: 768px) {
-  #menu a[href="https://glazedtheme.tumblr.com/"] {
-    position: fixed !important;
-    right: 10%;
+  a.menu-item[href="https://elisebyblog.tumblr.com"] {
+    top: 81% !important;
+    right: 18% !important;
+  
   }
 }
+
 @media (max-width: 768px) {
   #click-text a {
   font-size: 25px;
@@ -250,20 +253,88 @@ footer a {
   font-style: italic;
 }
 
-
+/*✧༺♥༻✧╔══ஓ๑♡๑ஓ══╗ ✧༺♥༻✧
+     ✦ grid background ✦
+✧༺♥༻✧  ╚══ஓ๑♡๑ஓ══╝ ✧༺♥༻✧*/
 
 #grid-overlay {
   position: fixed;
-  z-index: 0;         
-  pointer-events: none;
-  mix-blend-mode: multiply; 
-  transform-origin: center;
-
-  width: 95%;
-  height: 95%;
-
   top: 47%;
   left: 50%;
+  width: 95%;
+  height: 95%;
   transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+  mix-blend-mode: multiply;
 }
+
+@media (max-width: 768px) {
+  #grid-overlay {
+    top: auto;  
+    bottom: 10vw; 
+    left: 3vw; 
+    width: 250%;        /* zoom in */
+    height: 100%;       /* zoom in */
+    transform: none;    /* disable center translation */
+  }
+}
+
+
+/*✧༺♥༻✧╔══ஓ๑♡๑ஓ══╗ ✧༺♥༻✧
+     ✦ social + music icons ✦
+✧༺♥༻✧  ╚══ஓ๑♡๑ஓ══╝ ✧༺♥༻✧*/
+
+
+
+.icon-bar {
+  position: fixed;  
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 60px; 
+}
+
+.social-icons,
+.music-icons {
+  display: flex;
+  gap: 18px;
+}
+
+.icon-bar a {
+  font-size: 20px;
+  color: blue;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.icon-bar a:hover {
+  color: #ea0a8c;
+  transform: scale(1.15);
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .icon-bar {
+    padding: 0 30px;         /* reduce side padding */
+    bottom: 15px;            /* move slightly higher */
+  }
+
+  .social-icons,
+  .music-icons {
+    gap: 12px;               /* smaller gap between icons */
+  }
+
+  .icon-bar a {
+    font-size: 18px;         /* slightly smaller icons */
+  }
+
+  #devtag {
+    bottom: 5%;
+  }
+}
+
+
 

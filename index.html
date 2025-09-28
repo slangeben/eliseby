@@ -13,6 +13,7 @@
  <script src="libraries/p5.min.js"></script>
     <script src="libraries/p5.sound.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/keen-slider@latest/keen-slider.min.js"></script>
+    <script src="https://kit.fontawesome.com/41b73119ed.js" crossorigin="anonymous"></script>
     
     <script>
       
@@ -80,7 +81,7 @@ const setClickColour = 'blue'; // change to any css color
 
   <body>
 
-    <img src="gridBicolour.png" alt="grid background" id="grid-overlay">
+    <img src="grid1.svg" alt="grid background" id="grid-overlay">
 
  <!-- ✧༺♥༻✧╔══ஓ๑♡๑ஓ══╗ ✧༺♥༻✧
             ✦ menu items ✦
@@ -90,7 +91,7 @@ const setClickColour = 'blue'; // change to any css color
     <div id="menu">
 
       <!-- ♪♫• press •♫♪ */ -->
-    <a href="#press" class="menu-item" style="top: 60%; left: 20%;">photos</a>
+    <a href="#press" class="menu-item" style="top: 60%; left: 20%;">gallery</a>
 
      <!--/* ♪♫• contact •♫♪ */-->
     <a href="#contact" class="menu-item" style="top: 47%; right: 15%;">contact</a>
@@ -101,8 +102,8 @@ const setClickColour = 'blue'; // change to any css color
      <!-- /* ♪♫• bio •♫♪ */-->
     <a href="#bio" class="menu-item" style="top: 20%; left: 20%;">bio</a>
 
-     <!--/* ♪♫• calendar •♫♪ */ -->
-    <a href="https://glazedtheme.tumblr.com/" class="menu-item" style="top: 80%; right: 30%;">blog</a>
+     <!--/* ♪♫• blog •♫♪ */ -->
+    <a href="https://elisebyblog.tumblr.com" class="menu-item" style="top: 80%; right: 30%;">bedroom</a>
     
   </div>
 
@@ -267,11 +268,61 @@ document.querySelectorAll('#menu a').forEach(link => {
 });
 </script>
 
+
+<script>
+const listenDialog = document.getElementById("popup-listen");
+const listenIframe = listenDialog.querySelector("iframe");
+const listenLink = document.querySelector('#menu a[href="#listen"]');
+const originalSrc = listenIframe.src;
+
+
+listenDialog.addEventListener("close", () => {
+  listenIframe.src = "";
+});
+
+
+listenLink.addEventListener("click", (e) => {
+  e.preventDefault();
+  listenIframe.src = originalSrc;
+  listenDialog.show();
+});
+</script>
+
+
 <footer>
+<div class="credits">
   made with ♡ by 
-  <a href="https://portfolio.marialandelund.com" target="_blank" rel="developer and design credits">
+  <a href="https://portfolio.marialandelund.com" target="_blank" rel="noopener noreferrer">
     maria lande lund
   </a>
+</div>
+
+  <div class="icon-bar">
+
+    
+  <div class="social-icons">
+    <a href="https://facebook.com/yourprofile" target="_blank" aria-label="Facebook">
+      <i class="fa-brands fa-facebook"></i>
+    </a>
+    <a href="https://instagram.com/yourprofile" target="_blank" aria-label="Instagram">
+      <i class="fa-brands fa-instagram"></i>
+    </a>
+  </div>
+
+
+  <div class="music-icons">
+    <a href="https://open.spotify.com/artist/yourprofile" target="_blank" aria-label="Spotify">
+      <i class="fa-brands fa-spotify"></i>
+    </a>
+    <a href="https://music.apple.com/yourprofile" target="_blank" aria-label="Apple Music">
+      <i class="fa-brands fa-itunes-note"></i>
+    </a>
+    <a href="https://tidal.com/yourprofile" target="_blank" aria-label="Tidal">
+      <i class="fa-brands fa-tidal"></i>
+    </a>
+  </div>
+</div>
+
 </footer>
   </body>
 </html>
