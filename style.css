@@ -167,7 +167,7 @@ footer a {
 }
 
 @media (max-width: 768px) {
-  a.menu-item[href="https://elisebyblog.tumblr.com"] {
+  a.menu-item[href="https://eliseby-bedroom.tumblr.com"] {
     top: 81% !important;
     right: 18% !important;
   
@@ -186,15 +186,30 @@ footer a {
   white-space: nowrap;
 }
 }
+@media (max-width: 768px) {
+  #keen-slider__slide number-slide13 {
+min-width: 50px;
+max-width: 50px;
+}
+}
+
 
 /*✧༺♥༻✧╔══ஓ๑♡๑ஓ══╗ ✧༺♥༻✧
     ✦ press gallery slider ✦
 ✧༺♥༻✧  ╚══ஓ๑♡๑ஓ══╝ ✧༺♥༻✧*/
 
-/* Slider container */
+
+.keen-slider {
+  display: flex;
+  flex-wrap: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+
+
 #press-gallery {
   width: 100vw;
-  height: 72vh; /* 2/3 of viewport height */
+  height: 72vh;
   overflow: hidden;
   padding: 0;
   margin: 0;
@@ -214,33 +229,34 @@ footer a {
 
 
 .keen-slider__slide {
-  flex: 0 0 auto;                 /* don’t let slides grow */
-  height: 100%;                   /* match gallery height */
-  max-width: 40vw;                /* << cap slide width */
+  flex: 0 0 auto;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 1vw;              /* consistent spacing */
+  margin-right: 1vw;
+  box-sizing: border-box;
 }
 
+
 .keen-slider__slide img {   
-  height: 100%;                   /* fill vertical space */
-  width: auto;                    /* scale proportionally */
+  height: 100%;
+  width: auto;
   object-fit: contain;
   pointer-events: none;
 }
 
 
 #click-text {
-  position: absolute; /* instead of relative */
-  bottom: 17.5vh;       /* now this works */
-  left: 50%;          /* center horizontally */
+  position: absolute;
+  bottom: 17.5vh;
+  left: 50%;
   transform: translateX(-50%);
   font-size: 25px;
   color: blue;
-  z-index: 10;        /* above slider content */
+  z-index: 10;
   text-align: center;
-  text-shadow: 0 0 4px white, 0 0 8px white, 0 0 20px white;
+  text-shadow: 0 0 4px white, 0 0 8px white, 0 0 20px blue;
   
 }
 
@@ -274,9 +290,9 @@ footer a {
     top: auto;  
     bottom: 10vw; 
     left: 3vw; 
-    width: 250%;        /* zoom in */
-    height: 100%;       /* zoom in */
-    transform: none;    /* disable center translation */
+    width: 250%;
+    height: 100%;
+    transform: none;
   }
 }
 
@@ -310,6 +326,16 @@ footer a {
   text-decoration: none;
 }
 
+.credits a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.credits a:hover {
+  color: #ea0a8c;
+}
+
 .icon-bar a:hover {
   color: #ea0a8c;
   transform: scale(1.15);
@@ -318,17 +344,17 @@ footer a {
 
 @media (max-width: 768px) {
   .icon-bar {
-    padding: 0 30px;         /* reduce side padding */
-    bottom: 15px;            /* move slightly higher */
+    padding: 0 30px;
+    bottom: 15px;
   }
 
   .social-icons,
   .music-icons {
-    gap: 12px;               /* smaller gap between icons */
+    gap: 12px;
   }
 
   .icon-bar a {
-    font-size: 18px;         /* slightly smaller icons */
+    font-size: 18px;
   }
 
   #devtag {

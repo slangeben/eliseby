@@ -103,7 +103,7 @@ const setClickColour = 'blue'; // change to any css color
     <a href="#bio" class="menu-item" style="top: 20%; left: 20%;">bio</a>
 
      <!--/* ♪♫• blog •♫♪ */ -->
-    <a href="https://elisebyblog.tumblr.com" class="menu-item" style="top: 80%; right: 30%;">bedroom</a>
+    <a href="https://eliseby-bedroom.tumblr.com" class="menu-item" style="top: 80%; right: 30%;">bedroom</a>
     
   </div>
 
@@ -135,17 +135,19 @@ const setClickColour = 'blue'; // change to any css color
 <section id="press-gallery" style="display: none;">
  <div id="press-slider" class="keen-slider">
   <!-- <div class="keen-slider__slide number-slide1" style="min-width: 150px; max-width: 450px"> <img src="images/studioPic.png" alt=""></div> -->
-  <div class="keen-slider__slide number-slide2" style="min-width: 150px; max-width: 1000px"> <img src="images/img2.png" alt=""></div>
-  <div class="keen-slider__slide number-slide3" style="min-width: 150px; max-width: 500px;"><img src="images/img3.png" alt=""></div>
+  <div class="keen-slider__slide number-slide2" style="min-width: 150px; max-width: 500px"> <img src="images/img3.png" alt=""></div>
+  <div class="keen-slider__slide number-slide3" style="min-width: 150px; max-width: 1000px;"><img src="images/img2.png" alt=""></div>
   <div class="keen-slider__slide number-slide4" style="min-width: 400px; max-width: 500px;"><img src="images/img4.png" alt=""></div>
   <div class="keen-slider__slide number-slide5" style="min-width: 300px; max-width: 500px;"><img src="images/img5.png" alt=""></div>
   <div class="keen-slider__slide number-slide6" style="min-width: 200px; max-width: 500px;"><img src="images/img6.png" alt=""></div>
   <div class="keen-slider__slide number-slide7" style="min-width: 200px; max-width: 500px;"><img src="images/img7.png" alt=""></div>
   <div class="keen-slider__slide number-slide8" style="min-width: 200px; max-width: 500px;"><img src="images/studioPic.png" alt=""></div>
   <div class="keen-slider__slide number-slide9" style="min-width: 200px; max-width: 500px;"><img src="images/img9.png" alt=""></div>
-
+<div class="keen-slider__slide number-slide10" style="min-width: 200px; max-width: 500px;"><img src="images/img10.png" alt=""></div>
+<div class="keen-slider__slide number-slide11" style="min-width: 200px; max-width: 500px;"><img src="images/img11.png" alt=""></div>
+<div class="keen-slider__slide number-slide12" style="min-width: 200px; max-width: 400px;"><img src="images/img12.png" alt=""></div>
+<div class="keen-slider__slide number-slide13" style="min-width: 165px; max-width: 165px;"><img src="images/space.png" alt=""></div>
 </div>
-
     <div id="click-text">
     <a href="/password.html" target="_blank" class="click-press-link">
      <u> CLICK if you’re press!</u>
@@ -184,35 +186,81 @@ const setClickColour = 'blue'; // change to any css color
 
 <script src="https://cdn.jsdelivr.net/npm/keen-slider@latest/keen-slider.min.js"></script>
 <script>
+function WheelControls(slider) {
+  let touchTimeout
+  let position
+  let wheelActive
+
+  function dispatch(e, name) {
+    position.x -= e.deltaX
+    position.y -= e.deltaY
+    slider.container.dispatchEvent(
+      new CustomEvent(name, {
+        detail: {
+          x: position.x,
+          y: position.y,
+        },
+      })
+    )
+  }
+
+  function wheelStart(e) {
+    position = {
+      x: e.pageX,
+      y: e.pageY,
+    }
+    dispatch(e, "ksDragStart")
+  }
+
+  function wheel(e) {
+    dispatch(e, "ksDrag")
+  }
+
+  function wheelEnd(e) {
+    dispatch(e, "ksDragEnd")
+  }
+
+  function eventWheel(e) {
+    e.preventDefault()
+    if (!wheelActive) {
+      wheelStart(e)
+      wheelActive = true
+    }
+    wheel(e)
+    clearTimeout(touchTimeout)
+    touchTimeout = setTimeout(() => {
+      wheelActive = false
+      wheelEnd(e)
+    }, 50)
+  }
+
+  slider.on("created", () => {
+    slider.container.addEventListener("wheel", eventWheel, { passive: false })
+  })
+}
+
 const pressGallery = document.getElementById('press-gallery');
 const pressLink = document.querySelector('#menu a[href="#press"]');
 let pressSlider;
 
-// gallery on click
 pressLink.addEventListener('click', (e) => {
   e.preventDefault();
   pressGallery.style.display = 'block';
 
- 
   if (!pressSlider) {
-pressSlider = new KeenSlider("#press-slider", {
-  loop: false,
-  mode: "snap",
-  slides: { perView: "auto" },
-});
-
-
+    pressSlider = new KeenSlider("#press-slider", {
+      loop: true,
+      rubberband: false,
+      slides: { 
+      perView: "auto",
+      spacing: 0, },
+    }, [WheelControls]);
   }
 
   pressGallery.scrollIntoView({ behavior: "smooth" });
 });
 
-// disable gallery
-document.addEventListener('click', (e) => {
-  if (!pressGallery.contains(e.target) && e.target !== pressLink) {
-    pressGallery.style.display = 'none';
-  }
-});
+
 </script>
 
 
@@ -289,11 +337,13 @@ listenLink.addEventListener("click", (e) => {
 </script>
 
 
+
+
 <footer>
 <div class="credits">
   made with ♡ by 
   <a href="https://portfolio.marialandelund.com" target="_blank" rel="noopener noreferrer">
-    maria lande lund
+    <u>maria lande lund</u>
   </a>
 </div>
 
@@ -311,10 +361,10 @@ listenLink.addEventListener("click", (e) => {
 
 
   <div class="music-icons">
-    <a href="https://open.spotify.com/artist/yourprofile" target="_blank" aria-label="Spotify">
+    <a href="https://open.spotify.com/artist/44hLCaQMZHv5Dcx1OTsZTO?si=m8jDbtobSFS7jwHN3POSUQ" target="_blank" aria-label="Spotify">
       <i class="fa-brands fa-spotify"></i>
     </a>
-    <a href="https://music.apple.com/yourprofile" target="_blank" aria-label="Apple Music">
+    <a href="https://music.apple.com/us/artist/eliseby/1762005829" target="_blank" aria-label="Apple Music">
       <i class="fa-brands fa-itunes-note"></i>
     </a>
     <a href="https://tidal.com/yourprofile" target="_blank" aria-label="Tidal">

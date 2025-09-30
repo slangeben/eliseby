@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>kawaiidesune!!!</title>
+
+<!-- ⋆˚✿˖° 
+  css code  ཐིཋྀ ‧₊˚❀༉‧₊˚.
+  .𖥔 ݁ ˖.𖥔 ݁ ˖.𖥔 ݁ ˖. ݁₊ ⊹ . ݁˖ . ݁.𖥔 ݁ ˖-->
+<style>
+  body {
+    cursor: auto;
+    overflow: hidden;
+    height: 100vh;
+    margin: 0;
+    background: #fff;
+  }
+
+  .symbol {
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    will-change: transform, opacity;
+  }
+
+  .controls {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255,255,255,0.9);
+    padding: 10px;
+    border-radius: 12px;
+    font-family: sans-serif;
+    font-size: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    max-width: 95%;
+  }
+
+  .controls label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  input[type="range"],
+  input[type="color"] {
+    cursor: pointer;
+  }
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    background: #ffcce6; 
+    border-radius: 3px;
+    outline: none;
+  }
+
+  /* firefox */
+  input[type="range"]::-moz-range-track {
+    background: #ffcce6;
+    height: 6px;
+    border-radius: 3px;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: #ff99cc; 
+    border-radius: 50%;
+    border: 1px solid white;
+    cursor: pointer;
+    box-shadow: 0 0 4px rgba(0,0,0,0.2);
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: #ff99cc;
+    border-radius: 50%;
+    border: 2px solid white;
+    cursor: pointer;
+    box-shadow: 0 0 4px rgba(0,0,0,0.2);
+  }
+
+  p {
+    font-family: Helvetica, sans-serif;
+    margin: 2%;
+  }
+
+  .footer {
+    position: fixed;
+    bottom: 1px;
+    width: 100%;
+    text-align: right;
+    font-size: 12px;
+    right: 10px;
+    color: black;
+    pointer-events: none; 
+  }
+
+</style>
+</head>
+<body>
+
+<div class="controls">
+  <label>size:<input type="range" id="sizeSlider" min="5" max="50" value="12"></label>
+  <label>spread:<input type="range" id="spreadSlider" min="10" max="200" value="50"></label>
+  <label>count:<input type="range" id="countSlider" min="1" max="50" value="10"></label>
+  <label>lifetime(ms):<input type="range" id="lifeSlider" min="100" max="3000" value="800"></label>
+  <label>opacity:<input type="range" id="opacitySlider" min="0.1" max="1" step="0.05" value="1"></label>
+  <label>gravity:<input type="range" id="gravitySlider" min="-2" max="5" step="0.1" value="0"></label>
+  <label>size rand:<input type="range" id="sizeRandSlider" min="0" max="30" value="5"></label>
+  <label>colour:<input type="color" id="colorPicker" value="#000000"></label>
+  <label><input type="checkbox" id="randomColorToggle"> random colour </label>
+  <label>bg:<input type="color" id="bgPicker" value="#ffffff"></label>
+  <label><input type="checkbox" id="trailToggle">fairy dust ָ ʚଓ་༘࿐</label>
+  <label><input type="checkbox" id="pauseLifeToggle">draw</label>
+</div>
+<p class="footer">made with ♡ by maria lande lund © 2025</p>
+
+<script>
+  const symbols = ["♪","♫","✩","✧","✿","♡","⋆","｡","❀","࿔","*","☆","★","✮","✧","・","❥"];
+  let isDrawing = false;
+
+  let settings = {
+    size: 12,
+    spread: 50,
+    count: 10,
+    lifetime: 800,
+    opacity: 1,
+    gravity: 0,
+    sizeRand: 5,
+    colour: "#000000",
+    randomColors: false,
+    bg: "#ffffff",
+    trail: false,
+    pauseLife: false
+  };
+
+  const controls = {
+    sizeSlider: val => settings.size = parseInt(val),
+    spreadSlider: val => settings.spread = parseInt(val),
+    countSlider: val => settings.count = parseInt(val),
+    lifeSlider: val => settings.lifetime = parseInt(val),
+    opacitySlider: val => settings.opacity = parseFloat(val),
+    gravitySlider: val => settings.gravity = parseFloat(val),
+    sizeRandSlider: val => settings.sizeRand = parseInt(val),
+    colorPicker: val => settings.color = val,
+    randomColorToggle: val => settings.randomColors = val,
+    bgPicker: val => { settings.bg = val; document.body.style.backgroundColor = val; },
+    trailToggle: val => settings.trail = val,
+    pauseLifeToggle: val => settings.pauseLife = val
+  };
+
+  for (let id in controls) {
+    const el = document.getElementById(id);
+    if (el.type === "checkbox") {
+      el.addEventListener("change", e => controls[id](e.target.checked));
+    } else {
+      el.addEventListener("input", e => controls[id](e.target.value));
+    }
+  }
+
+  function getRandomColor() {
+    return `hsl(${Math.floor(Math.random() * 360)}, 80%, 60%)`;
+  }
+
+  function createSymbol(x, y) {
+  const symbol = document.createElement("div");
+  symbol.classList.add("symbol");
+  symbol.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+
+  const sizeVariation = (Math.random() - 0.5) * settings.sizeRand * 2;
+  symbol.style.fontSize = (settings.size + sizeVariation) + "px";
+  symbol.style.opacity = settings.opacity;
+  symbol.style.color = settings.randomColors ? getRandomColor() : settings.color;
+
+  const offsetX = (Math.random() - 0.5) * settings.spread * 2;
+  const offsetY = (Math.random() - 0.5) * settings.spread * 2;
+  symbol.style.left = x + offsetX + "px";
+  symbol.style.top = y + offsetY + "px";
+
+  document.body.appendChild(symbol);
+
+  if (settings.trail) {
+    // fairy dust mode: slowly fade out over lifetime
+    symbol.style.transition = `opacity ${settings.lifetime}ms ease, transform ${settings.lifetime}ms ease`;
+    setTimeout(() => symbol.style.opacity = 0, 50); // start fading
+    setTimeout(() => symbol.remove(), settings.lifetime);
+  } else if (!settings.pauseLife) {
+    // default pop-in-pop-out
+    setTimeout(() => symbol.remove(), 300 + Math.random() * 700);
+  }
+}
+
+  document.addEventListener("mousedown", e => {
+    isDrawing = true;
+    for (let i = 0; i < settings.count; i++) {
+      createSymbol(e.clientX, e.clientY);
+    }
+  });
+
+  document.addEventListener("mousemove", e => {
+    if (isDrawing) {
+      for (let i = 0; i < settings.count; i++) {
+        createSymbol(e.clientX, e.clientY);
+      }
+    }
+  });
+
+  document.addEventListener("mouseup", e => {
+    isDrawing = false;
+  });
+
+  document.addEventListener("touchstart", e => {
+    isDrawing = true;
+    const touch = e.touches[0];
+    for (let i = 0; i < settings.count; i++) {
+      createSymbol(touch.clientX, touch.clientY);
+    }
+  });
+
+  document.addEventListener("touchmove", e => {
+    if (isDrawing) {
+      const touch = e.touches[0];
+      for (let i = 0; i < settings.count; i++) {
+        createSymbol(touch.clientX, touch.clientY);
+      }
+    }
+  });
+
+  document.addEventListener("touchend", e => {
+    isDrawing = false;
+  });
+
+</script>
+</body>
+</html>
