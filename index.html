@@ -252,15 +252,23 @@ pressLink.addEventListener('click', (e) => {
       loop: true,
       rubberband: false,
       slides: { 
-      perView: "auto",
-      spacing: 0, },
+        perView: "auto",
+        spacing: 0, 
+      },
     }, [WheelControls]);
   }
 
   pressGallery.scrollIntoView({ behavior: "smooth" });
 });
 
-
+// close gallery
+document.addEventListener('click', (e) => {
+  if (pressGallery.style.display === 'block' &&
+      !pressGallery.contains(e.target) &&
+      e.target !== pressLink) {
+    pressGallery.style.display = 'none';
+  }
+});
 </script>
 
 
@@ -268,15 +276,21 @@ pressLink.addEventListener('click', (e) => {
 
 
 <script>
-document.querySelectorAll('#menu a').forEach(link => {
+const menuLinks = document.querySelectorAll('#menu a');
+
+menuLinks.forEach(link => {
   const target = link.getAttribute('href').substring(1); // e.g. "bio"
   const dialog = document.getElementById(`popup-${target}`);
 
   if (!dialog) return;
 
-  // click to show dialog
   link.addEventListener('click', (e) => {
     e.preventDefault();
+
+    // Close all other dialogs first
+    document.querySelectorAll('dialog').forEach(d => {
+      if (d !== dialog) d.close();
+    });
 
     dialog.show();
 
@@ -315,6 +329,7 @@ document.querySelectorAll('#menu a').forEach(link => {
   });
 });
 </script>
+
 
 
 <script>
